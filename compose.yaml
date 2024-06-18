@@ -1,0 +1,26 @@
+# Deploying this on AWS EC2 to avoid faffing w Docker on Windows.
+# Used AWS EC2 / Ubuntu AMI and then install Docker Engine. Add ubuntu user to docker group.
+# Tried t2.micro instance; it quickly hit 99.7% CPU utilization and died;
+# switched to t2.medium and now it is fine.
+
+# Must set up security group and open up, besides 22/80/443, all the ports listed below.
+# The ports are ostensibly listed here
+# https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/
+# but the real way I found out was through the ursim docker container docs and ur_rtde error msgs...
+# https://hub.docker.com/r/universalrobots/ursim_e-series
+
+services:
+  ursim:
+    image: universalrobots/ursim_e-series
+    ports:
+      # Dashboard server (ur_rtde Control interface)
+      - "29999:29999"
+      # RTDE (ur_rtde Receive and IO interfaces)
+      - "30004:30004"
+      # http "novnc" interface
+      - "6080:6080"
+    volumes:
+      # for the bind-mounting-externalcontrol-urcap business to work,
+      # for some setups for some reason, may need to SUDO docker compose up -d
+      - ./urcaps:/urcaps
+      - ./programs:/ursim/programs
