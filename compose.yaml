@@ -17,7 +17,7 @@ services:
       - "29999:29999"
       # RTDE (ur_rtde Receive and IO interfaces)
       - "30004:30004"
-      # http "novnc" interface
+      # http "novnc" interface: http://host.name:6080/vnc.html
       - "6080:6080"
     volumes:
       # for the bind-mounting-externalcontrol-urcap business to work,

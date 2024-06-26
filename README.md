@@ -1,17 +1,15 @@
-# UR
+[Click here for the UR RTDE on Windows guide.](ur-rtde-on-windows.md)
 
-ursim browser interface:
-http://ursim.zooe.org:6080/vnc.html
+# UR
 
 Python on Linux:
 ```
 pip install ur_rtde
 ```
 Receive interface example:
-(or use local IP address of actual UR)
 ```
 import rtde_receive
-rtde_r = rtde_receive.RTDEReceiveInterface("ursim.zooe.org")
+rtde_r = rtde_receive.RTDEReceiveInterface("UR.ip.address.here")
 actual_q = rtde_r.getActualQ()
 ```
 
