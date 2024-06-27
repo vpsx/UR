@@ -109,6 +109,12 @@ So, for example, to record two different trials, you might do `python record_dat
 You can modify the example to fit your use case: For example, to narrow down the variables that get recorded, change `rtde_r.startFileRecording(args.output)` in the record data example to
 `rtde_r.startFileRecording(args.output, ['actual_q', 'actual_TCP_pose', 'whatever_other_stuff'])`. Or you could change the default frequency, etc.
 
+### Starting a new session
+
+If you restart your device and need to set up the program again (once everything is installed, set up, and was working), open Git and navigate the folder where ur_rtde is located the run the following commands in order assuming you want to use the example code to obtain data from the robot arm: source venv/Scripts/activate > cd examples > cd py
+
+Then, follow the instructions above as normal by first checking that there is connection established between the robot arm and your laptop by pinging the IP address (it should return a message stating the bit rate of data transfer) and enterring the command to save the robot arm data to the .csv file. An example image of the sample git commands used to obtain the force output is located in the "Images" folder to this repository.
+
 ### Troubleshooting and random notes
 
 - If you are getting a CMake error about `distutils`, you may need to be using **Python 3.11 or lower**; `distutils` is [removed from Python 3.12 onwards](https://docs.python.org/3.12/whatsnew/3.12.html#distutils).
@@ -127,3 +133,4 @@ You can modify the example to fit your use case: For example, to narrow down the
 - If you installed Visual Studio but still prefer the command-line, [this doc](https://learn.microsoft.com/en-us/visualstudio/msbuild/walkthrough-using-msbuild?view=vs-2022)
   has information on where to find the `msbuild` executable in your Visual Studio install.
   I found mine at `C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe`.
+- Ensure that the Power outlet to the router is connected to a socket. If it is not, you will see a time out message when pinging the IP address in the commmand line or an error message on the robot arm's console ("Not connected to network!") next to the IP address in the "About" page.
